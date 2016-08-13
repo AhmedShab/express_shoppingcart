@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Product = require('../models/product');
+var seed = require('../seed/product-seeder');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -12,6 +13,10 @@ router.get('/', function(req, res, next) {
         }
         res.render('shop/index', { title: 'Shopping Cart', products: productChunks });
     });
+});
+
+router.get('/seed', function (req, res) {
+  seed.runSeed(req, res);
 });
 
 module.exports = router;
